@@ -3,6 +3,7 @@ import { Todo } from "../models/todo";
 type ShowTodoProps = {
   todos: Todo[];
   changeTodoList: (t: Todo) => void;
+  deleteTodo: (id: number) => void;
 };
 
 export const ShowTodos = (props: ShowTodoProps) => {
@@ -26,7 +27,7 @@ export const ShowTodos = (props: ShowTodoProps) => {
             checked={t.isDone}
             onChange={() => props.changeTodoList(t)}
           />
-          <button>X</button>
+          <button onClick={() => props.deleteTodo(t.id)}>X</button>
           {/* återanvända buttonskomponent?? */}
         </ul>
       ))}

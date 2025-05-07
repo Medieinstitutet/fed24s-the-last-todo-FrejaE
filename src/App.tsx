@@ -36,6 +36,9 @@ function App() {
     });
     setTodos(newTodos);
   };
+  const deleteTodo = (id: number) => {
+    setTodos(todos.filter((t) => t.id !== id));
+  };
   const doneTodos = todos.filter((t) => t.isDone);
   const todosToDo = todos.filter((t) => !t.isDone);
 
@@ -46,9 +49,17 @@ function App() {
       <Buttons text="Sortera" handleClick={() => {}} />
       {showForm && <CreateTodo createTodo={handleTodo} />}
       <Heading greeting="Att göra:" />
-      <ShowTodos todos={todosToDo} changeTodoList={changeTodoList} />
+      <ShowTodos
+        todos={todosToDo}
+        changeTodoList={changeTodoList}
+        deleteTodo={deleteTodo}
+      />
       <Heading greeting="Avklarade:" />
-      <ShowTodos todos={doneTodos} changeTodoList={changeTodoList} />
+      <ShowTodos
+        todos={doneTodos}
+        changeTodoList={changeTodoList}
+        deleteTodo={deleteTodo}
+      />
     </>
   );
 }
