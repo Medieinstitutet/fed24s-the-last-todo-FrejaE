@@ -1,35 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import { Buttons } from "./components/Buttons";
+import { CreateTodo } from "./components/CreateTodo";
+import { Heading } from "./components/Heading";
+import { ShowTodos } from "./components/ShowTodos";
+import { Todo } from "./models/todo";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [showForm, setShowForm] = useState<boolean>(false);
+  const [todos, setTodos] = useState<Todo[]>([
+    { id: 1, task: "Skapa komponenter", isDone: false },
+    {
+      id: 2,
+      task: "Bestämma mig om tailwind eller material ui",
+      isDone: false,
+    },
+    { id: 3, task: "Lämna barnen på fsk", isDone: true },
+    { id: 4, task: "Hälla upp en kopp kaffe", isDone: true },
+  ]);
+  const handleTodo = (todo: Todo) => {
+    console.log(todo);
+    setTodos([...todos, todo]);
+    setShowForm(false);
+  };
+  const handleForm = () => {
+    setShowForm(true);
+  };
+
+  const changeTodoList = (t: Todo) => {
+    const newTodos = todos.map((todo) => {
+      if (todo.id === t.id) {
+        return { ...todo, isDone: !todo.isDone };
+      }
+      return todo;
+    });
+    setTodos(newTodos);
+  };
+  const doneTodos = todos.filter((t) => t.isDone);
+  const todosToDo = todos.filter((t) => !t.isDone);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Heading h1 greeting="Min todo app" />
+      <Buttons text="Lägg till ny todo" handleClick={handleForm} />
+      <Buttons text="Sortera" handleClick={() => {}} />
+      {showForm && <CreateTodo createTodo={handleTodo} />}
+      <Heading greeting="Att göra:" />
+      <ShowTodos todos={todosToDo} changeTodoList={changeTodoList} />
+      <Heading greeting="Avklarade:" />
+      <ShowTodos todos={doneTodos} changeTodoList={changeTodoList} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
