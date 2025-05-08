@@ -23,19 +23,17 @@ export const CreateTodo = (props: CreateTodoProps) => {
 
   return (
     <>
-      <div>
-        <form onSubmit={handleSubmit}>
-          {/* ta ev bort label */}
-          <label htmlFor="task">Skriv todo</label>
-          <input
-            id="task"
-            type="text"
-            onChange={handleChange}
-            value={newTodo.task}
-          />
-          <button>Lägg till</button>
-        </form>
-      </div>
+      <form onSubmit={handleSubmit}>
+        {/* ta ev bort label */}
+        <label htmlFor="task">Skriv todo</label>
+        <input
+          id="task"
+          type="text"
+          onChange={handleChange}
+          value={newTodo.task}
+        />
+        <button>Lägg till</button>
+      </form>
     </>
   );
 };

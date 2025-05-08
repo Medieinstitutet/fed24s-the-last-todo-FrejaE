@@ -1,4 +1,7 @@
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import * as React from "react";
+import Button from "@mui/material/Button";
+import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
+import { ChangeEvent } from "react";
 import { Todo } from "../models/todo";
 type ShowTodoProps = {
   todos: Todo[];
@@ -21,13 +24,16 @@ export const ShowTodos = (props: ShowTodoProps) => {
     <>
       {props.todos.map((t) => (
         <ul key={t.id}>
-          <li>{t.task}</li>
           <input
             type="checkbox"
             checked={t.isDone}
             onChange={() => props.changeTodoList(t)}
           />
-          <button onClick={() => props.deleteTodo(t.id)}>X</button>
+          <li>{t.task}</li>
+
+          <Button onClick={() => props.deleteTodo(t.id)} variant="outlined">
+            <DeleteRoundedIcon />
+          </Button>
           {/* återanvända buttonskomponent?? */}
         </ul>
       ))}

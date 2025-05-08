@@ -1,13 +1,16 @@
 import { useState } from "react";
 import "./App.css";
 import { Buttons } from "./components/Buttons";
-import { CreateTodo } from "./components/CreateTodo";
 import { Heading } from "./components/Heading";
 import { ShowTodos } from "./components/ShowTodos";
 import { Todo } from "./models/todo";
+import CreateTodoModal from "./components/CreateTodoModal";
 
 function App() {
-  const [showForm, setShowForm] = useState<boolean>(false);
+  const [sortNewestFirst, setSortNewestFirst] = useState<boolean>(true);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const [todos, setTodos] = useState<Todo[]>([
     { id: 1, task: "Skapa komponenter", isDone: false },
     {
@@ -21,10 +24,7 @@ function App() {
   const handleTodo = (todo: Todo) => {
     console.log(todo);
     setTodos([...todos, todo]);
-    setShowForm(false);
-  };
-  const handleForm = () => {
-    setShowForm(true);
+    handleClose();
   };
 
   const changeTodoList = (t: Todo) => {
@@ -39,15 +39,29 @@ function App() {
   const deleteTodo = (id: number) => {
     setTodos(todos.filter((t) => t.id !== id));
   };
-  const doneTodos = todos.filter((t) => t.isDone);
-  const todosToDo = todos.filter((t) => !t.isDone);
+  const sortedTodos = [...todos].sort((a, b) => {
+    return sortNewestFirst ? b.id - a.id : a.id - b.id;
+  });
+  const doneTodos = sortedTodos.filter((t) => t.isDone);
+  const todosToDo = sortedTodos.filter((t) => !t.isDone);
 
   return (
     <>
       <Heading h1 greeting="Min todo app" />
-      <Buttons text="Lägg till ny todo" handleClick={handleForm} />
-      <Buttons text="Sortera" handleClick={() => {}} />
-      {showForm && <CreateTodo createTodo={handleTodo} />}
+      <Buttons text="Lägg till ny todo" handleClick={handleOpen} />
+      <Buttons
+        text={sortNewestFirst ? "Nyast först" : "Äldst först"}
+        handleClick={() => {
+          setSortNewestFirst(!sortNewestFirst);
+        }}
+      />
+      {open && (
+        <CreateTodoModal
+          createTodo={handleTodo}
+          open={open}
+          handleClose={handleClose}
+        />
+      )}
       <Heading greeting="Att göra:" />
       <ShowTodos
         todos={todosToDo}
