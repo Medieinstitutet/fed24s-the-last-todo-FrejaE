@@ -5,6 +5,9 @@ import { Heading } from "./components/Heading";
 import { ShowTodos } from "./components/ShowTodos";
 import { Todo } from "./models/todo";
 import CreateTodoModal from "./components/CreateTodoModal";
+import { Box } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import SortIcon from "@mui/icons-material/Sort";
 
 function App() {
   const [sortNewestFirst, setSortNewestFirst] = useState<boolean>(true);
@@ -48,13 +51,20 @@ function App() {
   return (
     <>
       <Heading h1 greeting="Min todo app" />
-      <Buttons text="Lägg till ny todo" handleClick={handleOpen} />
-      <Buttons
-        text={sortNewestFirst ? "Nyast först" : "Äldst först"}
-        handleClick={() => {
-          setSortNewestFirst(!sortNewestFirst);
-        }}
-      />
+      <Box display="flex" gap={2} mb={3} justifyContent="center">
+        <Buttons
+          text="Lägg till ny todo"
+          handleClick={handleOpen}
+          icon={<AddIcon />}
+        />
+        <Buttons
+          text={sortNewestFirst ? "Nyast först" : "Äldst först"}
+          handleClick={() => {
+            setSortNewestFirst(!sortNewestFirst);
+          }}
+          icon={<SortIcon />}
+        />
+      </Box>
       {open && (
         <CreateTodoModal
           createTodo={handleTodo}
