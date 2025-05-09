@@ -31,7 +31,7 @@ export default function BasicModal(props: BasicModalProps) {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
+            Skapa Todo
           </Typography>
           {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}> */}
           <CreateTodo createTodo={props.createTodo} />

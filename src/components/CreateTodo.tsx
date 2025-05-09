@@ -24,8 +24,6 @@ export const CreateTodo = (props: CreateTodoProps) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        {/* ta ev bort label */}
-        <label htmlFor="task">Skriv todo</label>
         <input
           id="task"
           type="text"

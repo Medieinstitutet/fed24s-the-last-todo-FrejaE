@@ -1,8 +1,15 @@
-import * as React from "react";
-import Button from "@mui/material/Button";
-import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
-import { ChangeEvent } from "react";
+import {
+  Checkbox,
+  IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  ListItemSecondaryAction,
+} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { Todo } from "../models/todo";
+
 type ShowTodoProps = {
   todos: Todo[];
   changeTodoList: (t: Todo) => void;
@@ -10,33 +17,34 @@ type ShowTodoProps = {
 };
 
 export const ShowTodos = (props: ShowTodoProps) => {
-  const handleCheckbox = (e: ChangeEvent<HTMLInputElement>, t: Todo) => {
-    // const newList = [...props.todos];
-    // if (e.target.checked) {
-    //   newList[i].isDone = true;
-    // } else {
-    //   newList[i].isDone = false;
-    // }
-    // console.log(newList);
-    // props.setTodos(newList);
-  };
   return (
-    <>
+    <List>
       {props.todos.map((t) => (
-        <ul key={t.id}>
-          <input
-            type="checkbox"
-            checked={t.isDone}
-            onChange={() => props.changeTodoList(t)}
-          />
-          <li>{t.task}</li>
+        <ListItem key={t.id} divider>
+          <ListItemIcon>
+            <Checkbox
+              edge="start"
+              checked={t.isDone}
+              onChange={() => props.changeTodoList(t)}
+            />
+          </ListItemIcon>
 
-          <Button onClick={() => props.deleteTodo(t.id)} variant="outlined">
-            <DeleteRoundedIcon />
-          </Button>
-          {/* återanvända buttonskomponent?? */}
-        </ul>
+          <ListItemText
+            primary={t.task}
+            sx={{ textDecoration: t.isDone ? "line-through" : "none" }}
+          />
+
+          <ListItemSecondaryAction>
+            <IconButton
+              edge="end"
+              aria-label="delete"
+              onClick={() => props.deleteTodo(t.id)}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </ListItemSecondaryAction>
+        </ListItem>
       ))}
-    </>
+    </List>
   );
 };

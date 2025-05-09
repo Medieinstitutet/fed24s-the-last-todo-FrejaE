@@ -1,3 +1,5 @@
+import Button from "@mui/material/Button";
+
 type ButtonsProps = {
   text: string;
   handleClick: () => void;
@@ -6,7 +8,9 @@ type ButtonsProps = {
 export const Buttons = (props: ButtonsProps) => {
   return (
     <div>
-      <button onClick={props.handleClick}>{props.text}</button>
+      <Button variant="contained" onClick={props.handleClick}>
+        {props.text}
+      </Button>
     </div>
   );
 };
