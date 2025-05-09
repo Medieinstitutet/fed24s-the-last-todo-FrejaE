@@ -33,9 +33,7 @@ export default function BasicModal(props: BasicModalProps) {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Skapa Todo
           </Typography>
-          {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}> */}
           <CreateTodo createTodo={props.createTodo} />
-          {/* </Typography> */}
         </Box>
       </Modal>
     </div>

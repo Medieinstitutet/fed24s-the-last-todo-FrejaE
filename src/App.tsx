@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import { Buttons } from "./components/Buttons";
+import { Buttons } from "./components/Button";
 import { Heading } from "./components/Heading";
 import { ShowTodos } from "./components/ShowTodos";
 import { Todo } from "./models/todo";
