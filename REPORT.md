@@ -50,7 +50,7 @@ för att köra projektet.
 
 
 ## 🏆 **Betyg: VG**
-📌 **Motivering:** Koden uppfyller alla krav för VG. Projektet har en hårdkodad lista med todo-punkter, presenterar listan på skärmen i en strukturerad form, och har implementerat funktioner för att hantera borttagning och toggling av uppgifter. Det finns även ett formulär för att lägga till nya todo-punkter och en möjlighet att sortera uppgifterna. Projektet använder Material UI som ett grafiskt ramverk och har strukturerad CSS med användning av flexbox.
+📌 **Motivering:** Koden uppfyller alla VG-kraven: Den har en hårdkodad lista med todos, möjliggjort borttagning av todos, och markerar dem som klara. Studenten lyckas också visa klara todos, låta användaren lägga till nya todos via ett formulär, sortera ordningen av todos och implementera ett grafiskt ramverk (Material UI). Dessutom används egen CSS med flexbox.
 
 💡 **Förbättringsförslag:**  
-Koden kan förbättras genom att implementera en mer omfattande felhantering, särskilt när det gäller användarens inmatningar i formuläret. Att lägga till valideringar kan också säkerställa att inga tomma todo-punkter läggs till. Formulärets utseende skulle kunna förbättras för bättre användarupplevelse genom att lägga till mer stil och feedback till användaren när en uppgift läggs till. Det finns också utrymme för att använda fler av React's hooks och konvertera annan funktionalitet till hooks för konsistensens skull.
+En förbättring kan vara att lägga till felhantering när användaren försöker skapa en ny todo med tom text. En liten brist skulle kunna vara användningen av console.log för att debugga, vilket kan tas bort i framtiden. Skriv gärna kommentarer i koden för att förbättra läsbarheten och underhåll som kan hjälpa nya studenter att förstå kodflödet bättre.
